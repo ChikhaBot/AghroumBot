@@ -1,12 +1,17 @@
 // TO run: npm run dev
 const { Client, Intents } = require('discord.js');
-const { token } = require('./config.json');
+const dotenv = require('dotenv');
+
+// const { token } = require('./config.json');
+dotenv.config()
+
+const token = process.env.TOKEN ?? 'TOKEN';
 // const fs = require('fs')
 
 // Read file and get responses
 const fs = require('fs')
 const bankContent = fs.readFileSync('./bank.txt', {encoding: 'utf-8'})
-const responses=  bankContent.split('\r\n') 
+const responses=  bankContent.split('\r\n')
 
 
 const client = new Client({
@@ -36,9 +41,9 @@ client.on('message', function (message) {
 		const randomReply = responses[Math.floor(Math.random() * responses.length)]
 		message.reply(randomReply)
 	}
-	
 
-	
+
+
 	// TODO: detect convos and select a random person
 
 	if(!cnt[authorId]){ // Ila makantch deja 3endna
@@ -50,7 +55,7 @@ client.on('message', function (message) {
 		case 'ping':
 			message.reply('Pong!');
 		break;
-		default: 
+		default:
 			if (content.startsWith('chko')){
 				cnt[authorId]++
 				message.reply(`Li7wak ${cnt[authorId]}-0`);
