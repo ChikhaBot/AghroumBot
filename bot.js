@@ -11,7 +11,7 @@ const token = process.env.TOKEN ?? 'TOKEN';
 // Read file and get responses
 const fs = require('fs')
 const bankContent = fs.readFileSync('./bank.txt', {encoding: 'utf-8'})
-const responses=  bankContent.split('\r\n')
+const responses=  bankContent.split('\n')
 
 
 const client = new Client({
