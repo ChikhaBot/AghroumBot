@@ -17,7 +17,7 @@ jobs:
         run: sudo npm install -g caprover
 
       - name: Create tar
-        run: tar -cvf ./deploy.tar --exclude='*.map' ecosystem.config.js captain-definition package.json package-lock.json Dockerfile bot.js bank.txt
+        run: tar -cvf ./deploy.tar --exclude='*.map' ecosystem.config.js captain-definition package.json package-lock.json yarn.lock Dockerfile bot.js bank.txt
 
       - name: Deploy
         run: caprover deploy -h ${{ secrets.CAPROVER_SERVER_PROD }} -p ${{ secrets.CAPROVER_PASSWORD_PROD }} -a aghroum -t ./deploy.tar
