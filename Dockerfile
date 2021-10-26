@@ -17,6 +17,7 @@ RUN apk --no-cache --virtual build-dependencies add \
     && ln -s /usr/bin/python3 /usr/local/bin/python \
     && yarn install --non-interactive
 
-COPY ./dist ./dist
+COPY bot.js ./
+COPY bank.txt ./
 
 CMD ["pm2-runtime", "start", "ecosystem.config.js"]
