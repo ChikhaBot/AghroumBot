@@ -2,7 +2,7 @@
 const { Client, Intents } = require('discord.js');
 const dotenv = require('dotenv');
 const fetch = require('node-fetch');
-const nparse = require('node-html-parser');
+const nparse = import('node-html-parser');
 
 // const { token } = require('./config.json');
 dotenv.config()
