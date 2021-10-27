@@ -3,7 +3,7 @@ import { Client, Intents } from 'discord.js'
 import dotenv from 'dotenv';
 import fetch from 'node-fetch'
 import { parse } from 'node-html-parser';
-
+import fs from 'fs'
 // const { token } = require('./config.json');
 dotenv.config()
 
@@ -11,7 +11,6 @@ const token = process.env.TOKEN ?? 'TOKEN';
 // const fs = require('fs')
 
 // Read file and get responses
-const fs = require('fs')
 const bankContent = fs.readFileSync('./bank.txt', {encoding: 'utf-8'})
 const responses=  bankContent.split('\n')
 
