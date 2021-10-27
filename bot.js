@@ -2,7 +2,7 @@
 const { Client, Intents } = require('discord.js');
 const dotenv = require('dotenv');
 const fetch = require('node-fetch');
-const {parse} = require('node-html-parser');
+const nparse = require('node-html-parser');
 
 // const { token } = require('./config.json');
 dotenv.config()
@@ -48,7 +48,7 @@ const URL = domain+"/"+"%D8%AA%D8%B5%D9%86%D9%8A%D9%81:%D8%A3%D9%83%D9%84%D8%A7%
 const getRecipe = async () => {
   try {
     const RecipeRawData = await getRawData(URL);
-    const loadedData = parse(RecipeRawData);
+    const loadedData = nparse.parse(RecipeRawData);
     const recipes = loadedData.querySelector("#grid").childNodes.filter(node => node.rawTagName === "li");
     const randomRecipe = recipes[Math.floor(Math.random() * recipes.length)];
     if(randomRecipe) {
