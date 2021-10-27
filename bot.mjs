@@ -47,7 +47,7 @@ const URL = domain+"/"+"%D8%AA%D8%B5%D9%86%D9%8A%D9%81:%D8%A3%D9%83%D9%84%D8%A7%
 const getRecipe = async () => {
   try {
     const RecipeRawData = await getRawData(URL);
-    const loadedData = nparse.parse(RecipeRawData);
+    const loadedData = parse(RecipeRawData);
     const recipes = loadedData.querySelector("#grid").childNodes.filter(node => node.rawTagName === "li");
     const randomRecipe = recipes[Math.floor(Math.random() * recipes.length)];
     console.log(randomRecipe)
