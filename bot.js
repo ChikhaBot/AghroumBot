@@ -1,6 +1,8 @@
 // TO run: npm run dev
 const { Client, Intents } = require('discord.js');
 const dotenv = require('dotenv');
+const fetch = require('node-fetch');
+const {parse} = require('node-html-parser');
 
 // const { token } = require('./config.json');
 dotenv.config()
@@ -12,8 +14,6 @@ const token = process.env.TOKEN ?? 'TOKEN';
 const fs = require('fs')
 const bankContent = fs.readFileSync('./bank.txt', {encoding: 'utf-8'})
 const responses=  bankContent.split('\n')
-const fetch = require('node-fetch');
-const {parse} = require('node-html-parser');
 
 const client = new Client({
 	intents: [
@@ -46,15 +46,21 @@ const URL = domain+"/"+"%D8%AA%D8%B5%D9%86%D9%8A%D9%81:%D8%A3%D9%83%D9%84%D8%A7%
 
 // start of the program
 const getRecipe = async () => {
-   const RecipeRawData = await getRawData(URL);
-   const loadedData = parse(RecipeRawData);
-   const recipes = loadedData.querySelector("#grid").childNodes.filter(node => node.rawTagName === "li");
-   const randomRecipe = recipes[Math.floor(Math.random() * recipes.length)];
-   if(randomRecipe) {
-    const recipeLink = domain + randomRecipe.querySelector("a").attributes.href
-    return recipeLink;
-   }
+  try {
+    const RecipeRawData = await getRawData(URL);
+    const loadedData = parse(RecipeRawData);
+    const recipes = loadedData.querySelector("#grid").childNodes.filter(node => node.rawTagName === "li");
+    const randomRecipe = recipes[Math.floor(Math.random() * recipes.length)];
+    if(randomRecipe) {
+     const recipeLink = domain + randomRecipe.querySelector("a").attributes.href
+     return recipeLink;
+    }
+
+  } catch (error) {
    return null
+  }
+  return null
+
 };
 
 
