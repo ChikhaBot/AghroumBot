@@ -1,8 +1,8 @@
 // TO run: npm run dev
-const { Client, Intents } = require('discord.js');
-const dotenv = require('dotenv');
-const fetch = require('node-fetch');
-const nparse = import('node-html-parser');
+import { Client, Intents } from 'discord.js'
+import dotenv from 'dotenv';
+import fetch from 'node-fetch'
+import { parse } from 'node-html-parser';
 
 // const { token } = require('./config.json');
 dotenv.config()

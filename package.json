@@ -2,9 +2,9 @@
   "name": "bot",
   "version": "1.0.0",
   "description": "Aghroum",
-  "main": "bot.js",
+  "main": "bot.mjs",
   "scripts": {
-    "dev": "nodemon bot.js",
+    "dev": "nodemon bot.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "7midaMan",
