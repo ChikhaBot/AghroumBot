@@ -50,12 +50,14 @@ const getRecipe = async () => {
     const loadedData = nparse.parse(RecipeRawData);
     const recipes = loadedData.querySelector("#grid").childNodes.filter(node => node.rawTagName === "li");
     const randomRecipe = recipes[Math.floor(Math.random() * recipes.length)];
+    console.log(randomRecipe)
     if(randomRecipe) {
      const recipeLink = domain + randomRecipe.querySelector("a").attributes.href
      return recipeLink;
     }
 
   } catch (error) {
+    console.log(error);
    return null
   }
   return null
