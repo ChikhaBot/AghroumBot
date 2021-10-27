@@ -64,7 +64,7 @@ client.on('message', function (message) {
 	const proba = Math.random()
 
 	// had author ID ranseb zamel boh
-	if(Math.random() < proba && authorId != client.user.id && message.channel.id !== "901232039439761428"){
+	if(Math.random() < proba && authorId != client.user.id && message.channel.id == "901243325833707530"){
 		// Reply to that random person with a random reply
 		const randomReply = responses[Math.floor(Math.random() * responses.length)]
 		message.reply(randomReply)
