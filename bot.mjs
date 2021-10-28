@@ -69,7 +69,7 @@ const getRecipe = async () => {
 client.on('message', function (message) {
 	const content = message.content
 	const authorId = message.author.id
-	const proba = Math.random()
+	const proba = Math.min(Math.random(),0.5)
 	// had author ID ranseb zamel boh
 	if(Math.random() < proba && authorId != client.user.id && message.channel.id == "901243325833707530"){
 		// Reply to that random person with a random reply
@@ -113,7 +113,7 @@ client.on('message', function (message) {
 			}
       if(content.includes('jou3')){
         getRecipe().then(recipe => {
-          if(recipe){
+          if(Math.random() < proba ){
             message.reply(recipe)
           }else{
             message.reply("No recipe found, 9wd 3end mok!")
