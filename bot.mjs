@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import fetch from 'node-fetch'
 import { parse } from 'node-html-parser';
 import fs from 'fs'
+
 // const { token } = require('./config.json');
 dotenv.config()
 
@@ -29,6 +30,7 @@ client.once('ready', () => {
 });
 
 let cnt = {}
+
 
 // function to get the raw data
 const getRawData = (URL) => {
