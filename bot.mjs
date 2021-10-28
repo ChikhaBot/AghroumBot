@@ -123,7 +123,7 @@ client.on('message', function (message) {
 				})
 			}
 			if (content.startsWith('chikha')) {
-				if (Math.random() < proba) {
+				if (Math.random() < 0.7) {
 					return message.reply('3ti lmadam ti9ar awld l9hba');
 				}
 			}
