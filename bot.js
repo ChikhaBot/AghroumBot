@@ -1,5 +1,5 @@
 // TO run: npm run dev
-const { Client, Intents } = require('discord.js');
+const { Client, Intents, MessageEmbed } = require('discord.js');
 const dotenv = require('dotenv');
 
 // const { token } = require('./config.json');
@@ -30,17 +30,28 @@ client.once('ready', () => {
 
 let cnt = {}
 
+
 client.on('message', function (message) {
 	const content = message.content
 	const authorId = message.author.id
 	const proba = Math.random()
-
 	// had author ID ranseb zamel boh
 	if(Math.random() < proba && authorId != client.user.id && message.channel.id == "901243325833707530"){
 		// Reply to that random person with a random reply
 		const randomReply = responses[Math.floor(Math.random() * responses.length)]
 		message.reply(randomReply)
 	}
+
+	if (message.content.startsWith('av')) {
+		const user = message.mentions.users.first() || message.author;
+		const avatarEmbed = new MessageEmbed()
+		  .setColor(0x333333)
+		  .setAuthor(`${user.username}'s Avatar`)
+		  .setImage(
+			`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=256`
+		  );
+		message.reply({embeds: [avatarEmbed]});
+		}
 
 
 
@@ -54,6 +65,11 @@ client.on('message', function (message) {
 		// !ping
 		case 'ping':
 			message.reply('Pong!');
+		case 'zaml':
+			message.reply('kan 3rf ha had zaml<@447912513653309442>');
+			break
+		case '97bat':
+			message.reply('<@214522510639759360> <@447912513653309442> <@342071051183849484> <@532675052035112989> <@689907859919601689> ');
 		break;
 		default:
 			if (content.startsWith('chko')){
@@ -61,8 +77,10 @@ client.on('message', function (message) {
 				message.reply(`Li7wak ${cnt[authorId]}-0`);
 			}
 		break
+		
 	}
 });
+
 
 
 client.login(token);
