@@ -73,7 +73,7 @@ client.on('message', function (message) {
 	if (authorId==="898268191464239204"){
 		return
 	}
-	const proba = 1// Math.min(Math.random(), 0.5)
+	const proba = 0.4// Math.min(Math.random(), 0.5)
 
 	// TODO: detect convos and select a random person
 
