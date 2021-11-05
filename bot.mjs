@@ -69,10 +69,11 @@ const getRecipe = async () => {
 client.on('message', function (message) {
 	const content = message.content
 	const authorId = message.author.id
+	const isTargetable = message.member.roles.cache.has('906198570804338708')
 	if (authorId==="898268191464239204"){
 		return
 	}
-	const proba = Math.min(Math.random(), 0.5)
+	const proba = 1// Math.min(Math.random(), 0.5)
 
 	// TODO: detect convos and select a random person
 
@@ -92,7 +93,8 @@ client.on('message', function (message) {
 			return message.reply('<@214522510639759360> <@447912513653309442> <@342071051183849484> <@532675052035112989> <@689907859919601689> ');
 			break;
 		default:
-			if (Math.random() < proba && authorId != client.user.id && message.channel.id == "901243325833707530") {
+			if (Math.random() < proba && authorId != client.user.id && isTargetable && message.channel.id == "901243325833707530")
+			 {
 				// Reply to that random person with a random reply
 				const randomReply = responses[Math.floor(Math.random() * responses.length)]
 				return message.reply(randomReply)
