@@ -73,7 +73,7 @@ client.on('message', function (message) {
 	if (authorId==="898268191464239204"){
 		return
 	}
-	const proba = 0.4// Math.min(Math.random(), 0.5)
+	const proba = 0.2// Math.min(Math.random(), 0.5)
 
 	// TODO: detect convos and select a random person
 
@@ -93,7 +93,7 @@ client.on('message', function (message) {
 			return message.reply('<@214522510639759360> <@447912513653309442> <@342071051183849484> <@532675052035112989> <@689907859919601689> ');
 			break;
 		default:
-			if (Math.random() < proba && authorId != client.user.id && isTargetable && message.channel.id == "901243325833707530")
+			if (Math.random() < proba && authorId != client.user.id && isTargetable && message.channel.id == "912069547987730444")
 			 {
 				// Reply to that random person with a random reply
 				const randomReply = responses[Math.floor(Math.random() * responses.length)]
