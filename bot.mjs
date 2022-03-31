@@ -69,7 +69,7 @@ const getRecipe = async () => {
 client.on('message', function (message) {
 	const content = message.content
 	const authorId = message.author.id
-	const isTargetable = message.member.roles.cache.has('906198570804338708')
+	const isTargetable = message.member.roles.cache.has('906198570804338708') || message.member.roles.cache.has('959210485851512852') 
 	if (authorId==="898268191464239204"){
 		return
 	}
@@ -93,7 +93,7 @@ client.on('message', function (message) {
 			return message.reply('<@214522510639759360> <@447912513653309442> <@342071051183849484> <@532675052035112989> <@689907859919601689> ');
 			break;
 		default:
-			if (Math.random() < proba && authorId != client.user.id && isTargetable && message.channel.id == "929539397253222440")
+			if (Math.random() < proba && authorId != client.user.id && isTargetable && (message.channel.id == "929539397253222440" || message.channel.id == "956758369979469857"))
 			 {
 				// Reply to that random person with a random reply
 				const randomReply = responses[Math.floor(Math.random() * responses.length)]
