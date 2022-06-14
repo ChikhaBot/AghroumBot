@@ -120,7 +120,7 @@ client.on('message', function (message) {
 				cnt[authorId]++
 				return message.reply(`Li7wak ${cnt[authorId]}-0`);
 			}
-			if (content.includes('jou3')) {
+			if (content.includes('jou3') || content.includes('jo3')) {
 				getRecipe().then(recipe => {
 					if (Math.random() < proba) {
 						return message.reply(recipe)
