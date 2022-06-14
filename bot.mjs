@@ -70,7 +70,7 @@ client.on('message', function (message) {
 	const content = message.content
 	const authorId = message.author.id
 	const hasRole = (role) => message.member.roles.cache.some(r => r.id === role)
-	const isTargetable = (authorId == "287755474185617408") ||  hasRole('906198570804338708') || hasRole('959210485851512852')
+	const isTargetable = (hasRole('906198570804338708') || hasRole('959210485851512852')
 	if (authorId === "898268191464239204"){
 		return
 	}
