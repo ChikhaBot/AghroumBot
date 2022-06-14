@@ -94,7 +94,7 @@ client.on('message', function (message) {
 			return message.reply('<@214522510639759360> <@447912513653309442> <@342071051183849484> <@532675052035112989> <@689907859919601689> ');
 			break;
 		default:
-			if (Math.random() < proba && authorId != client.user.id && isTargetable && (message.channel.id == "929539397253222440" || message.channel.id == "956758369979469857" || message.channel.id == "934121859551735850"))
+			if (Math.random() < proba && authorId != client.user.id && isTargetable && (message.channel.id == "929539397253222440" || message.channel.id == "956758369979469857" || message.channel.id == "986308230806372392"))
 			 {
 				// Reply to that random person with a random reply
 				const randomReply = responses[Math.floor(Math.random() * responses.length)]
