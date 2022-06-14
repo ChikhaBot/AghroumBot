@@ -69,11 +69,12 @@ const getRecipe = async () => {
 client.on('message', function (message) {
 	const content = message.content
 	const authorId = message.author.id
-	const isTargetable = message.member.roles.cache.has('906198570804338708') || message.member.roles.cache.has('959210485851512852') 
+	console.log(message.member)
+	const isTargetable = authorId == "287755474185617408" ||  message.member.roles && (message.member.roles.cache.has('906198570804338708') || message.member.roles.cache.has('959210485851512852')) 
 	if (authorId==="898268191464239204"){
 		return
 	}
-	const proba = 0.2// Math.min(Math.random(), 0.5)
+	const proba = Math.min(Math.random(), 0.5)
 
 	// TODO: detect convos and select a random person
 
