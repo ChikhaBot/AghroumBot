@@ -112,6 +112,10 @@ client.on('message', function (message) {
 					);
 				return message.reply({ embeds: [avatarEmbed] });
 			}
+			
+			if(message.content.includes('<@631447671697178624>')){
+				return message.reply(`<@${authorId}> taggi mamak`)	
+			}
 		
 			if (content.startsWith('chko')) {
 				cnt[authorId]++
