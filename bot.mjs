@@ -79,7 +79,7 @@ client.on('message', function (message) {
   const authorId = message.author.id
   const hasRole = (role) => message.member.roles.cache.some(r => r.id === role)
   const isTargetable = (hasRole('906198570804338708') || hasRole('959210485851512852') || hasRole('997621361436524655'))
-  const proba = Math.min(Math.random(), 0.15)
+  const proba = Math.min(Math.random(), 0.45)
 
   // TODO: detect convos and select a random person
 
