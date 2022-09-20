@@ -78,7 +78,7 @@ client.on('message', function (message) {
   const content = message.content
   const authorId = message.author.id
   const hasRole = (role) => message.member.roles.cache.some(r => r.id === role)
-  const isTargetable = (hasRole('906198570804338708') || hasRole('959210485851512852') || hasRole('997621361436524655'))
+  const isTargetable = (hasRole('906198570804338708') || hasRole('959210485851512852') || hasRole('997621361436524655')) || hasRole('643814738995838976')
   const proba = Math.min(Math.random(), 0.45)
 
   // TODO: detect convos and select a random person
@@ -93,10 +93,10 @@ client.on('message', function (message) {
       return message.reply('Pong!');
       break
     case 'zaml':
-      return message.reply('kan 3rf ha had zaml<@447912513653309442>');
+      return message.reply('kan 3rf ha had zaml<@386191247829762049>');
       break
     case '97bat':
-      return message.reply('<@214522510639759360> <@447912513653309442> <@342071051183849484> <@532675052035112989> <@689907859919601689> ');
+      return message.reply('<@386191247829762049>');
       break;
     default:
       if (
@@ -106,7 +106,8 @@ client.on('message', function (message) {
         (message.channel.id == "929539397253222440" ||
           message.channel.id == "956758369979469857" ||
           message.channel.id == "986308230806372392" ||
-          message.channel.id == "973054418914263092")) {
+          message.channel.id == "973054418914263092" ||
+          message.channel.id == "643968735941754880")) {
 
         // Reply to that random person with a random reply
         const randomReply = responses[Math.floor(Math.random() * responses.length)]
