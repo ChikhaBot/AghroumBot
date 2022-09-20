@@ -74,7 +74,9 @@ const getRecipe = async () => {
 };
 
 
-client.on('message', function (message) {
+client.on('messageCreate', function (message) {
+  console.log('message', message)
+
   const content = message.content
   const authorId = message.author.id
   const hasRole = (role) => message.member.roles.cache.some(r => r.id === role)
