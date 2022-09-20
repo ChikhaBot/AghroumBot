@@ -86,18 +86,14 @@ client.on('message', function (message) {
   if (!cnt[authorId]) { // Ila makantch deja 3endna
     cnt[authorId] = 0
   }
-
+  console.log('content', content)
   switch (content) {
-    // !ping
     case 'ping':
       return message.reply('Pong!');
-      break
     case 'zaml':
       return message.reply('kan 3rf ha had zaml <@386191247829762049>');
-      break
     case '97ba':
       return message.reply('hahiya <@386191247829762049>');
-      break;
     default:
       if (
         Math.random() < proba &&
