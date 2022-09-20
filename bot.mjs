@@ -1,44 +1,39 @@
 // TO run: npm run dev
-import {
-  Client,
-  Intents,
-  MessageEmbed
-} from 'discord.js'
+import { Client,  GatewayIntentBits } from 'discord.js';
 import dotenv from 'dotenv';
-import fetch from 'node-fetch'
-import {
-  parse
-} from 'node-html-parser';
-import fs from 'fs'
+import fetch from 'node-fetch';
+import { parse } from 'node-html-parser';
+import fs from 'fs';
 
 // const { token } = require('./config.json');
-dotenv.config()
+dotenv.config();
 
 const token = process.env.TOKEN || 'TOKEN';
 // const fs = require('fs')
 
 // Read file and get responses
 const bankContent = fs.readFileSync('./bank.txt', {
-  encoding: 'utf-8'
-})
-const responses = bankContent.split('\n')
+  encoding: 'utf-8',
+});
+const responses = bankContent.split('\n');
 
 const client = new Client({
   intents: [
-    Intents.FLAGS.GUILDS,
-    Intents.FLAGS.GUILD_MESSAGES,
-  ]
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMembers,
+  ],
 });
 
 client.once('ready', () => {
-  const botTag = client.user.tag
-  console.log(`=======================================`)
-  console.log(`Ready! Logged in as ${botTag}`)
-  console.log(`=======================================`)
+  const botTag = client.user.tag;
+  console.log(`=======================================`);
+  console.log(`Ready! Logged in as ${botTag}`);
+  console.log(`=======================================`);
 });
 
-let cnt = {}
-
+let cnt = {};
 
 // function to get the raw data
 const getRawData = (URL) => {
@@ -50,45 +45,54 @@ const getRawData = (URL) => {
 };
 
 // URL for data
-const domain = "https://mawdoo3.com"
-const URL = domain + "/" + "%D8%AA%D8%B5%D9%86%D9%8A%D9%81:%D8%A3%D9%83%D9%84%D8%A7%D8%AA_%D8%B3%D8%B1%D9%8A%D8%B9%D8%A9";
+const domain = 'https://mawdoo3.com';
+const URL =
+  domain +
+  '/' +
+  '%D8%AA%D8%B5%D9%86%D9%8A%D9%81:%D8%A3%D9%83%D9%84%D8%A7%D8%AA_%D8%B3%D8%B1%D9%8A%D8%B9%D8%A9';
 
 // start of the program
 const getRecipe = async () => {
   try {
     const RecipeRawData = await getRawData(URL);
     const loadedData = parse(RecipeRawData);
-    const recipes = loadedData.querySelector("#grid").childNodes.filter(node => node.rawTagName === "li");
+    const recipes = loadedData
+      .querySelector('#grid')
+      .childNodes.filter((node) => node.rawTagName === 'li');
     const randomRecipe = recipes[Math.floor(Math.random() * recipes.length)];
     if (randomRecipe) {
-      const recipeLink = domain + randomRecipe.querySelector("a").attributes.href
+      const recipeLink =
+        domain + randomRecipe.querySelector('a').attributes.href;
       return recipeLink;
     }
-
   } catch (error) {
     console.log(error);
-    return null
+    return null;
   }
-  return null
-
+  return null;
 };
 
-
 client.on('messageCreate', function (message) {
-  console.log('message', message)
+  console.log('message', message);
 
-  const content = message.content
-  const authorId = message.author.id
-  const hasRole = (role) => message.member.roles.cache.some(r => r.id === role)
-  const isTargetable = (hasRole('906198570804338708') || hasRole('959210485851512852') || hasRole('997621361436524655')) || hasRole('643814738995838976')
-  const proba = Math.min(Math.random(), 0.45)
+  const content = message.content;
+  const authorId = message.author.id;
+  const hasRole = (role) =>
+    message.member.roles.cache.some((r) => r.id === role);
+  const isTargetable =
+    hasRole('906198570804338708') ||
+    hasRole('959210485851512852') ||
+    hasRole('997621361436524655') ||
+    hasRole('643814738995838976');
+  const proba = Math.min(Math.random(), 0.45);
 
   // TODO: detect convos and select a random person
 
-  if (!cnt[authorId]) { // Ila makantch deja 3endna
-    cnt[authorId] = 0
+  if (!cnt[authorId]) {
+    // Ila makantch deja 3endna
+    cnt[authorId] = 0;
   }
-  console.log('content', content)
+  console.log('content', content);
   switch (content) {
     case 'ping':
       return message.reply('Pong!');
@@ -101,15 +105,16 @@ client.on('messageCreate', function (message) {
         Math.random() < proba &&
         authorId != client.user.id &&
         isTargetable &&
-        (message.channel.id == "929539397253222440" ||
-          message.channel.id == "956758369979469857" ||
-          message.channel.id == "986308230806372392" ||
-          message.channel.id == "973054418914263092" ||
-          message.channel.id == "643968735941754880")) {
-
+        (message.channel.id == '929539397253222440' ||
+          message.channel.id == '956758369979469857' ||
+          message.channel.id == '986308230806372392' ||
+          message.channel.id == '973054418914263092' ||
+          message.channel.id == '643968735941754880')
+      ) {
         // Reply to that random person with a random reply
-        const randomReply = responses[Math.floor(Math.random() * responses.length)]
-        return message.reply(randomReply)
+        const randomReply =
+          responses[Math.floor(Math.random() * responses.length)];
+        return message.reply(randomReply);
       }
 
       if (message.content.startsWith('av')) {
@@ -121,26 +126,26 @@ client.on('messageCreate', function (message) {
             `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=256`
           );
         return message.reply({
-          embeds: [avatarEmbed]
+          embeds: [avatarEmbed],
         });
       }
 
       if (message.content.includes('<@631447671697178624>')) {
-        return message.reply(`<@${authorId}> taggi mamak`)
+        return message.reply(`<@${authorId}> taggi mamak`);
       }
 
       if (content.startsWith('chko')) {
-        cnt[authorId]++
+        cnt[authorId]++;
         return message.reply(`Li7wak ${cnt[authorId]}-0`);
       }
       if (content.includes('jou3') || content.includes('jo3')) {
-        getRecipe().then(recipe => {
+        getRecipe().then((recipe) => {
           if (Math.random() < proba) {
-            return message.reply(recipe)
+            return message.reply(recipe);
           } else {
-            return message.reply("No recipe found, 9wd 3end mok!")
+            return message.reply('No recipe found, 9wd 3end mok!');
           }
-        })
+        });
       }
       if (content.startsWith('chikha')) {
         if (Math.random() < 0.7) {
@@ -148,12 +153,14 @@ client.on('messageCreate', function (message) {
         }
       }
       if (content.startsWith('/play')) {
-        const ajwiba = ["wrk 3la `tab` juj merat a l2adabi", "wach mklkh awld l9hba", "WA TAB AZEBI TAAAAAAAB"]
+        const ajwiba = [
+          'wrk 3la `tab` juj merat a l2adabi',
+          'wach mklkh awld l9hba',
+          'WA TAB AZEBI TAAAAAAAB',
+        ];
         return message.reply(ajwiba[Math.floor(Math.random() * ajwiba.length)]);
-
       }
-      break
-
+      break;
   }
 });
 
