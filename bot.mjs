@@ -93,10 +93,10 @@ client.on('message', function (message) {
       return message.reply('Pong!');
       break
     case 'zaml':
-      return message.reply('kan 3rf ha had zaml<@386191247829762049>');
+      return message.reply('kan 3rf ha had zaml <@386191247829762049>');
       break
-    case '97bat':
-      return message.reply('<@386191247829762049>');
+    case '97ba':
+      return message.reply('hahiya <@386191247829762049>');
       break;
     default:
       if (
