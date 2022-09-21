@@ -80,7 +80,7 @@ client.on('messageCreate', function (message) {
   const hasRole = (role) =>
     message.member.roles.cache.some((r) => r.id === role);
   const isTargetable = hasRole('1022108621527593010'); // NOSTRA ONLY
-  const proba = Math.min(Math.random(), 0.45);
+  const proba = 1;
 
   // TODO: detect convos and select a random person
 
@@ -127,9 +127,10 @@ client.on('messageCreate', function (message) {
       }
 
       if (
-        message.content.includes('<@447912513653309442>') ||
+        (message.content.includes('<@447912513653309442>') ||
         message.content.includes('<@214522510639759360>') ||
-        message.content.includes('<@342071051183849484>')
+        message.content.includes('<@342071051183849484>')) &&
+        authorId != client.user.id
       ) {
         return message.reply(`<@${authorId}> hadak baba dor oula n7wik`);
       }
