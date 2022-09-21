@@ -1,5 +1,5 @@
 // TO run: npm run dev
-import { Client,  GatewayIntentBits } from 'discord.js';
+import { Client, GatewayIntentBits } from 'discord.js';
 import dotenv from 'dotenv';
 import fetch from 'node-fetch';
 import { parse } from 'node-html-parser';
@@ -124,6 +124,14 @@ client.on('messageCreate', function (message) {
         return message.reply({
           embeds: [avatarEmbed],
         });
+      }
+
+      if (
+        message.content.includes('<@447912513653309442>') ||
+        message.content.includes('<@214522510639759360>') ||
+        message.content.includes('<@342071051183849484>')
+      ) {
+        return message.reply(`<@${authorId}> hadak baba dor oula n7wik`);
       }
 
       if (message.content.includes('<@631447671697178624>')) {
